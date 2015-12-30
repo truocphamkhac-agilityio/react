@@ -8,6 +8,9 @@
   <div id="app">
     <!-- app renders at here -->
   </div>
+  <div id="custom"></div>
+  <hr/>
+  <div id="state"></div>
   <!-- library -->
   <script src="react/build/react.js"></script>
   <script>
@@ -35,6 +38,61 @@
         " !"
       ),
       document.getElementById('app')
+    );
+
+    // create a new component
+    var newComponent = React.createClass({
+      propTypes: {
+        name: React.PropTypes.string.isRequired
+      },
+      render: function() {
+        return React.DOM.span(null, "My name is " + this.props.name);
+      }
+    });
+
+    // var componentFactory = React.createFactory(newComponent, { name: "Truoc" });
+
+    React.render(
+      React.createElement(newComponent, {
+        name: "Truoc Pham"
+      }),
+      // componentFactory(),
+      document.getElementById("custom")
+    );
+
+    ////////////////////////////////////////////////////////////////////////////
+    var TextAreaCounter = React.createClass({
+      propTypes: {
+        text: React.PropTypes.string
+      },
+      getInitialState: function() {
+        return {
+          text: this.props.text
+        };
+      },
+      _textChange: function(ev) {
+        this.setState({
+          text: ev.target.value
+        });
+      },
+      render: function() {
+        return React.DOM.div(null,
+          React.DOM.textarea(
+            {
+              value: this.state.text,
+              onChange: this._textChange
+            }
+          ),
+          React.DOM.h3(null, "size: " + this.state.text.length)
+        );
+      }
+    });
+
+    React.render(
+      React.createElement(TextAreaCounter, {
+        text: "Truoc Pham"
+      }),
+      document.getElementById("state")
     );
   </script>
 </body>
