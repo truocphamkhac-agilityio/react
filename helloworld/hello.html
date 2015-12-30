@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello world, React!</title>
+</head>
+<body>
+  <div id="app">
+    <!-- app renders at here -->
+  </div>
+  <!-- library -->
+  <script src="react/build/react.js"></script>
+  <script>
+    // react codes
+    React.render(
+      React.DOM.h1(
+        // attributes of DOM elements
+        {
+          id: "my-heading",
+          style: {
+            background: "red",
+            color: "white",
+            fontFamily: "Verdana"
+          }
+        },
+        // defines child of this component
+        React.DOM.span(null, "Hello"),
+        React.DOM.span(
+          {
+            className: "pretty",
+            htmlFor: "me"
+          },
+          " world"
+        ),
+        " !"
+      ),
+      document.getElementById('app')
+    );
+  </script>
+</body>
+</html>
