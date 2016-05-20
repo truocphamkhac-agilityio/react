@@ -4,7 +4,9 @@
   "description": "React, Hello world!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --port 9000 --content-base public",
+    "test": "karma start --single-run --reporters spec,coverage",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
