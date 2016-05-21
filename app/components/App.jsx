@@ -22,7 +22,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-        <header><h1>Todo list</h1></header>
+        <header><h1>Todos list</h1></header>
         <ul>
           {this.renderTasks()}
         </ul>

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import H1 from './components/H1';
+import App from './components/App.jsx';
 
 ReactDOM.render(
-  <H1 />,
+  <App />,
   document.getElementById('main')
 );
