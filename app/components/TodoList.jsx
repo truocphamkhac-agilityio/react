@@ -1,44 +1,39 @@
 import * as _ from 'underscore';
 import React, { Component } from 'react';
 import TodoItem from './TodoItem.jsx';
-import NewTodoItem from './NewTodoItem.jsx';
 
 export default class TodoList extends Component {
   constructor(props) {
     super(props);
-    this.addEvent = this.addEvent.bind(this);
+  }
+
+  removeNode(nodeId) {
+    this.props.removeNode(nodeId);
+    return;
+  }
+
+  toggleComplete(nodeId) {
+    this.props.toggleComplete(nodeId);
+    return;
   }
 
   render() {
     let tasks = this.props.tasks.map((task) => {
       return (
-        <TodoItem key={task._id}>
-          {task.text}
-        </TodoItem>
+        <TodoItem
+          key={task._id}
+          nodeId={task._id}
+          text={task.text}
+          complete={task.complete}
+          removeNode={this.removeNode.bind(this, task._id)}
+          toggleComplete={this.toggleComplete.bind(this, task._id)} />
       );
     });
 
     return (
-      <div className="container">
-        <header><h1>Todos list</h1></header>
-        <ul>
-          {tasks}
-        </ul>
-        <NewTodoItem addEvent={this.addEvent} />
-      </div>
+      <ul className="list-group">
+        {tasks}
+      </ul>
     );
-  }
-
-  addEvent(taskObject) {
-    let tasks = this.props.tasks;
-    let length = _.size(tasks);
-
-    taskObject._id = length + 1;
-
-    tasks.push(taskObject);
-
-    console.log(tasks);
-
-    this.setState({tasks});
   }
 }
