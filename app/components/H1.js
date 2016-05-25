@@ -5,7 +5,7 @@ class H1 extends Component {
 
   render() {
     return(
-       <Title />
+      <Title />
     );
   }
 

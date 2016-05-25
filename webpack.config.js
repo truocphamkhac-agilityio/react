@@ -1,9 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
 const PATH = {
   public: path.join(__dirname, 'public'),
-  entry: path.join(__dirname, 'app', 'index.js')
+  entry: [
+    path.join(__dirname, 'app', 'index.js'),
+    'webpack-dev-server/client?http://0.0.0.0:9000'
+  ]
 };
 
 const config = {
@@ -12,12 +16,18 @@ const config = {
     path: PATH.public,
     filename: 'bundle.js'
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: PATH.public,
+    // Enable history API fallback so HTML5 History API based
+    // routing works. This is a good default that will come
+    // in handy in more complicated setups.
+    historyApiFallback: true,
     hot: true,
     inline: true,
-    watch: true
+    watch: true,
+    progress: true,
+    colors: true
   },
   resolve: {
     root: [path.resolve(__dirname, 'src')],
@@ -30,7 +40,7 @@ const config = {
     }, {
       test: /(\.jsx|\.js)$/,
       exclude: /node_modules/,
-      loaders: ['react-hot', 'babel'],
+      loaders: ['react-hot', 'babel']
     }, {
       test: /.*\.(gif|png|jpe?g|svg)$/i,
       loaders: [
@@ -50,7 +60,10 @@ const config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new NpmInstallPlugin({
+      save: true
+    })
   ]
 };
 

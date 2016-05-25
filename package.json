@@ -4,7 +4,7 @@
   "description": "React, Hello world!",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --port 9000 --content-base public",
+    "start": "webpack-dev-server --config webpack.config.js --host 0.0.0.0 --port 9000 --progress --colors --watch-poll --inline",
     "test": "karma start --single-run --reporters spec,coverage",
     "build": "webpack --config webpack.config.js"
   },
@@ -28,8 +28,11 @@
   },
   "homepage": "https://github.com/truocphamkhac/react#readme",
   "dependencies": {
+    "jquery": "^2.2.4",
     "react": "15.0.2",
-    "react-dom": "15.0.2"
+    "react-bootstrap": "^0.29.4",
+    "react-dom": "15.0.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
@@ -40,6 +43,7 @@
     "babel-polyfill": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-1": "^6.5.0",
     "chai": "^3.5.0",
     "classnames": "^2.2.3",
@@ -48,6 +52,7 @@
     "coveralls": "^2.11.9",
     "css-loader": "^0.23.1",
     "enzyme": "^2.2.0",
+    "es6-promise": "^3.2.1",
     "eslint": "^2.8.0",
     "eslint-loader": "^1.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -70,7 +75,7 @@
     "karma-webpack": "^1.7.0",
     "node-sass": "^3.7.0",
     "normalize.css": "^4.0.0",
-    "npm-install-webpack-plugin": "^3.1.1",
+    "npm-install-webpack-plugin": "^3.1.4",
     "phantomjs-polyfill": "^0.0.2",
     "phantomjs-prebuilt": "^2.1.7",
     "react-addons-test-utils": "^15.0.2",
