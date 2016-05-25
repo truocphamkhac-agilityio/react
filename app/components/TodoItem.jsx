@@ -86,9 +86,9 @@ class TodoItem extends Component {
         <li className={classes}>
           {this.props.text}
           <div className="pull-right" role="group">
-            <button className="btn btn-xs btn-warning img-circle" type="button" onClick={this.doEditing}><i className="glyphicon glyphicon-pencil"></i></button>
-            <button className="btn btn-xs btn-success img-circle" type="button" onClick={this.props.toggleComplete}><i className="glyphicon glyphicon-ok"></i></button>
-            <button className="btn btn-xs btn-danger img-circle" type="button" onClick={this.props.removeNode}><i className="glyphicon glyphicon-remove"></i></button>
+            <button className="btn btn-sm btn-warning img-circle" type="button" onClick={this.doEditing}><i className="glyphicon glyphicon-pencil"></i></button>
+            <button className="btn btn-sm btn-success img-circle" type="button" onClick={this.props.toggleComplete}><i className="glyphicon glyphicon-ok"></i></button>
+            <button className="btn btn-sm btn-danger img-circle" type="button" onClick={this.props.removeNode}><i className="glyphicon glyphicon-remove"></i></button>
           </div>
         </li>
       );
