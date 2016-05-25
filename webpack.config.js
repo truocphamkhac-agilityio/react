@@ -17,7 +17,8 @@ const config = {
     contentBase: PATH.public,
     hot: true,
     inline: true,
-    watch: true
+    watch: true,
+    progress: true
   },
   resolve: {
     root: [path.resolve(__dirname, 'src')],
@@ -30,7 +31,7 @@ const config = {
     }, {
       test: /(\.jsx|\.js)$/,
       exclude: /node_modules/,
-      loaders: ['react-hot', 'babel'],
+      loaders: ['react-hot', 'babel']
     }, {
       test: /.*\.(gif|png|jpe?g|svg)$/i,
       loaders: [

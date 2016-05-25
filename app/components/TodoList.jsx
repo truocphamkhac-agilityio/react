@@ -17,6 +17,11 @@ export default class TodoList extends Component {
     return;
   }
 
+  onSave(task, textEditing) {
+    this.props.onSave(task, textEditing);
+    return;
+  }
+
   render() {
     let tasks = this.props.tasks.map((task) => {
       return (
@@ -25,8 +30,10 @@ export default class TodoList extends Component {
           nodeId={task._id}
           text={task.text}
           complete={task.complete}
+          editing={task.editing}
           removeNode={this.removeNode.bind(this, task._id)}
-          toggleComplete={this.toggleComplete.bind(this, task._id)} />
+          toggleComplete={this.toggleComplete.bind(this, task._id)}
+          onSave={this.onSave.bind(this, task)} />
       );
     });
 

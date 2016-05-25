@@ -10,6 +10,7 @@
     margin-right: 0!important;
 }
 
-.todoBox .list-group .img-circle:first-child {
+.todoBox .list-group .img-circle:nth-child(2) {
+    margin-left: 2px;
     margin-right: 2px;
 }

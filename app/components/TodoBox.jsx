@@ -8,9 +8,9 @@ let TodoBox = React.createClass({
   getInitialState() {
     return {
       tasks: [
-        {_id: 1, text: 'Wake up', complete: true},
-        {_id: 2, text: 'Eat breakfast', complete: true},
-        {_id: 3, text: 'Drink beer', complete: false}
+        {_id: 1, text: 'Wake up', complete: true, editing: false},
+        {_id: 2, text: 'Eat breakfast', complete: true, editing: false},
+        {_id: 3, text: 'Drink beer', complete: false, editing: false}
       ]
     };
   },
@@ -42,6 +42,22 @@ let TodoBox = React.createClass({
     return;
   },
 
+  handleSaveNode(task, textEditing) {
+    let tasks = this.state.tasks;
+
+    tasks.forEach(taskItem => {
+      if (taskItem._id === task._id) {
+        taskItem.text = textEditing;
+      }
+    });
+
+    console.log('[info] - Editing task text', textEditing);
+    console.log('[info] - tasks', tasks);
+
+    this.setState({tasks});
+    return;
+  },
+
   handleSubmit(text) {
     let tasks = this.state.tasks;
     let _id = _.size(tasks) + 1;
@@ -60,7 +76,8 @@ let TodoBox = React.createClass({
         <TodoList
           tasks={this.state.tasks}
           removeNode={this.handleNodeRemoval}
-          toggleComplete={this.handleToggleComplete} />
+          toggleComplete={this.handleToggleComplete}
+          onSave={this.handleSaveNode} />
         <NewTodoItem onTaskSubmit={this.handleSubmit} />
       </div>
     );
