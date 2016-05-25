@@ -1,7 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
+const TARGET = process.env.npm_lifecycle_event;
 const PATH = {
   public: path.join(__dirname, 'public'),
   entry: [
@@ -10,24 +12,13 @@ const PATH = {
   ]
 };
 
-const config = {
+process.env.BABEL_ENV = TARGET;
+
+const common = {
   entry: PATH.entry,
   output: {
     path: PATH.public,
     filename: 'bundle.js'
-  },
-  devtool: 'eval-source-map',
-  devServer: {
-    contentBase: PATH.public,
-    // Enable history API fallback so HTML5 History API based
-    // routing works. This is a good default that will come
-    // in handy in more complicated setups.
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    watch: true,
-    progress: true,
-    colors: true
   },
   resolve: {
     root: [path.resolve(__dirname, 'src')],
@@ -67,4 +58,31 @@ const config = {
   ]
 };
 
-module.exports = config;
+if (TARGET === 'start' || !TARGET) {
+  module.exports = merge(common, {
+    devtool: 'eval-source-map',
+    devServer: {
+      contentBase: PATH.public,
+
+      // Enable history API fallback so HTML5 History API based
+      // routing works. This is a good default that will come
+      // in handy in more complicated setups.
+      historyApiFallback: true,
+
+      hot: true,
+      inline: true,
+      watch: true,
+      progress: true,
+      colors: true,
+
+      // parse host and port from env so this is easy
+      // to customize
+      host: process.env.HOST,
+      port: process.env.PORT
+    }
+  });
+}
+
+if (TARGET === 'build') {
+  module.exports = merge(common, {});
+}
