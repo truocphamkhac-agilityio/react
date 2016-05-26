@@ -35,6 +35,9 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "alt": "^0.18.4",
+    "alt-container": "^1.0.2",
+    "alt-utils": "^1.0.0",
     "babel-cli": "^6.8.0",
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.2",
