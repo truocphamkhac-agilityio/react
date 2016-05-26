@@ -61,7 +61,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <button className="btn btn-success btn-xs glyphicon glyphicon-plus" onClick={this.addNote}></button>
+        <button className="add-note" onClick={this.addNote}>+</button>
         <Notes
           notes={this.state.notes}
           onEdit={this.handleEditNote}

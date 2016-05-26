@@ -14,8 +14,8 @@ class Notes extends Component {
   render() {
     const notes = this.props.notes;
     return(
-      <ul>
-        {notes.map(note => <li key={note.id}><Note
+      <ul className="notes">
+        {notes.map(note => <li className="note" key={note.id}><Note
           task={note.task}
           onEdit={this.state.onEdit.bind(null, note.id)}
           onDelete={this.state.onDelete.bind(null, note.id)} /></li>)}
