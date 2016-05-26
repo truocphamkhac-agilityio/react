@@ -16,6 +16,7 @@ class App extends Component {
 
     this.addNote = this.addNote.bind(this);
     this.handleEditNote = this.handleEditNote.bind(this);
+    this.handleDeleteNote = this.handleDeleteNote.bind(this);
   }
 
   addNote() {
@@ -45,13 +46,26 @@ class App extends Component {
     this.setState({notes});
   }
 
+  handleDeleteNote(id) {
+    if (!id) {
+      return;
+    }
+
+    const notes = this.state.notes.filter(note => {
+      return note.id !== id;
+    });
+
+    this.setState({notes});
+  }
+
   render() {
     return (
       <div>
-        <button onClick={this.addNote}>+</button>
+        <button className="btn btn-success btn-xs glyphicon glyphicon-plus" onClick={this.addNote}></button>
         <Notes
           notes={this.state.notes}
-          onEdit={this.handleEditNote} />
+          onEdit={this.handleEditNote}
+          onDelete={this.handleDeleteNote} />
       </div>
     );
   }

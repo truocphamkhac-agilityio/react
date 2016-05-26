@@ -61,7 +61,7 @@ class Note extends Component {
 
   renderNote() {
     return (
-      <div onClick={this.doEdit}>{this.props.task}</div>
+      <div onClick={this.doEdit}>{this.props.task} <span className="btn btn-danger btn-xs glyphicon glyphicon-remove" onClick={this.props.onDelete}></span></div>
     );
   }
 
