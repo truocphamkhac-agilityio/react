@@ -1,4 +1,4 @@
-import uuid from 'node-uuid';
+import AltContainer from 'alt-container';
 import React, {Component} from 'react';
 import Notes from './Notes.jsx';
 
@@ -9,24 +9,9 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = NoteStore.getState();
-
     this.handleAddNote = this.handleAddNote.bind(this);
     this.handleEditNote = this.handleEditNote.bind(this);
     this.handleDeleteNote = this.handleDeleteNote.bind(this);
-    this.storeChanged = this.storeChanged.bind(this);
-  }
-
-  storeChanged(state) {
-    this.setState(state);
-  }
-
-  componentDidMount() {
-    NoteStore.listen(this.storeChanged);
-  }
-
-  componentWillUnmount() {
-    NoteStore.unlisten(this.storeChanged);
   }
 
   handleAddNote() {
@@ -51,10 +36,16 @@ class App extends Component {
     return (
       <div>
         <button className="add-note" onClick={this.handleAddNote}>+</button>
-        <Notes
-          notes={this.state.notes}
-          onEdit={this.handleEditNote}
-          onDelete={this.handleDeleteNote} />
+        <AltContainer
+          stores={[NoteStore]}
+          inject={{
+            notes: () => NoteStore.getState().notes
+          }}
+        >
+          <Notes
+            onEdit={this.handleEditNote}
+            onDelete={this.handleDeleteNote} />
+        </AltContainer>
       </div>
     );
   }
