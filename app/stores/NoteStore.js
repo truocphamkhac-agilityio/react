@@ -1,3 +1,4 @@
+import * as _ from 'underscore';
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import NoteActions from '../actions/NoteActions';
@@ -15,12 +16,11 @@ class NoteStore {
   }
 
   getNotesByIds(ids) {
-    return (ids || []).reduce((notes, id) =>
-      // Concatenate possible matching ids to the result
-      notes.concat(
-        this.notes.filter(note => note.id === id)
-      )
-    , []);
+    let self = this;
+
+    return (ids || []).map(id => {
+      return _.findWhere(self.notes, {id: id});
+    });
   }
 
   create(note) {

@@ -1,5 +1,5 @@
 import AltContainer from 'alt-container';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import Notes from './Notes.jsx';
 import NoteActions from '../actions/NoteActions';
@@ -21,7 +21,7 @@ class Lane extends Component {
 
     LaneActions.attachToLane({
       laneId: lane.id,
-      note: note
+      noteId: note.id
     });
   }
 
@@ -35,6 +35,11 @@ class Lane extends Component {
 
   handleDeleteNote(id, e) {
     e.stopPropagation();
+
+    LaneActions.detachFromLane({
+      laneId: this.props.lane.id,
+      noteId: id
+    });
 
     NoteActions.delete(id);
   }
@@ -52,18 +57,32 @@ class Lane extends Component {
         </div>
         <AltContainer
           stores={[NoteStore]}
-          inject = {{
-            notes: () => NoteStore.getState().notes || []
+          inject={{
+            notes: () => NoteStore.getNotesByIds(lane.notes)
           }}
         >
           <Notes
             onEdit={this.handleEditNote}
-            onDelete={this.handleDeleteNote} />
+            onDelete={this.handleDeleteNote}
+          />
         </AltContainer>
       </div>
     );
   }
 }
+
+Lane.propTypes = {
+  lane: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    notes: PropTypes.array
+  }).isRequired
+};
+
+Lane.defaultProps = {
+  name: '',
+  notes: []
+};
 
 /**
  * Expose

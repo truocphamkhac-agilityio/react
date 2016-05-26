@@ -1,3 +1,4 @@
+import * as _ from 'underscore';
 import uuid from 'node-uuid';
 import alt from '../libs/alt';
 import LaneActions from '../actions/LaneActions';
@@ -19,16 +20,28 @@ class LaneStore {
     this.setState({lanes});
   }
 
-  attachToLane(attach) {
-    const landId = attach.laneId;
-    const note = attach.note;
+  attachToLane({laneId, noteId}) {
     const lanes = this.lanes.map(lane => {
-      if (lane.id === landId) {
-        if (lane.notes.includes(note)) {
+      if (lane.id === laneId) {
+        if (lane.notes.includes(noteId)) {
           console.warn('Already attached note to lane', lanes);
         } else {
-          lane.notes.push(note);
+          lane.notes.push(noteId);
         }
+      }
+
+      return lane;
+    });
+
+    this.setState({lanes});
+  }
+
+  detachFromLane({laneId, noteId}) {
+    const lanes = this.lanes.map(lane => {
+      if (lane.id === laneId) {
+        lane.notes = _.reject(lane.notes, note => {
+          return note === noteId;
+        });
       }
 
       return lane;

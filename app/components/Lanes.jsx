@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Lane from './Lane.jsx';
 
 class Lanes extends Component {
@@ -9,11 +9,27 @@ class Lanes extends Component {
   render() {
     return (
       <div className="lanes">
-        {this.props.lanes.map(lane => <Lane className="lane" key={lane.id} lane={lane} />)}
+        {
+          this.props.lanes.map(lane =>
+            <Lane
+              className="lane"
+              key={lane.id}
+              lane={lane}
+            />
+          )
+        }
       </div>
     );
   }
 }
+
+Lanes.propTypes = {
+  lanes: PropTypes.array
+};
+
+Lanes.defaultProps = {
+  lanes: []
+};
 
 /**
  * Expose

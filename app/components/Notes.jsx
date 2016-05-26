@@ -15,10 +15,17 @@ class Notes extends Component {
     const notes = this.props.notes;
     return(
       <ul className="notes">
-        {notes.map(note => <li className="note" key={note.id}><Note
-          task={note.task}
-          onEdit={this.state.onEdit.bind(null, note.id)}
-          onDelete={this.state.onDelete.bind(null, note.id)} /></li>)}
+        {
+          notes.map(note =>
+            <li className="note" key={note.id}>
+              <Note
+                task={note.task}
+                onEdit={this.state.onEdit.bind(null, note.id)}
+                onDelete={this.state.onDelete.bind(null, note.id)}
+              />
+            </li>
+          )
+        }
       </ul>
     );
   }
