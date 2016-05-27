@@ -3,6 +3,58 @@ body {
     font-family: sans-serif;
 }
 
+.lane {
+    display: inline-block;
+    margin: 1em;
+    background-color: #efefef;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    min-width: 10em;
+    vertical-align: top;
+}
+
+.lane-header {
+    overflow: auto;
+    padding: 1em;
+    color: #efefef;
+    background-color: #333;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+}
+
+.lane-name {
+    float: left;
+}
+
+.lane-add-note {
+    float: left;
+    margin-right: 0.5em;
+}
+
+.lane-delete {
+    float: right;
+    margin-left: 0.5em;
+    visibility: hidden;
+}
+
+.lane-header:hover .lane-delete {
+    visibility: visible;
+}
+
+.add-lane, .lane-add-note button {
+    cursor: pointer;
+    background-color: #fdfdfd;
+    border: 1px solid #ccc;
+}
+
+.lane-delete button {
+    padding: 0;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+}
+
 .add-note {
     background-color: #fdfdfd;
     border: 1px solid #ccc;
@@ -11,7 +63,6 @@ body {
 .notes {
     margin: 0.5em;
     padding-left: 0;
-    max-width: 10em;
     list-style: none;
 }
 
@@ -26,7 +77,7 @@ body {
     transition: 0.6s;
 }
 
-.note .delete-note {
+.note .delete {
     float: right;
     padding: 0 4px;
     background-color: #fdfdfd;
@@ -35,6 +86,6 @@ body {
     visibility: hidden;
 }
 
-.note:hover .delete-note {
+.note:hover .delete {
     visibility: visible;
 }
