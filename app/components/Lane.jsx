@@ -22,7 +22,6 @@ class Lane extends Component {
 
   render() {
     const lane = this.props.lane;
-    console.log('::lane::editing', lane.editing);
 
     return (
       <div className="lane">
@@ -88,21 +87,15 @@ class Lane extends Component {
   activateLaneEdit() {
     const laneId = this.props.lane.id;
 
-    console.log('activate lane %s edit', laneId);
-
     LaneActions.update({id: laneId, editing: true});
   }
 
   activateNoteEdit(noteId) {
-    console.log('activate note %s edit', noteId);
-
     NoteActions.update({id: noteId, editing: true})
   }
 
   handleEditLaneName(laneName) {
     const laneId = this.props.lane.id;
-
-    console.log('edit lane %s name using %s', laneId, laneName);
 
     if (!laneName.trim()) {
       LaneActions.update({id: laneId, editing: false});
@@ -114,8 +107,6 @@ class Lane extends Component {
 
   handleDeleteLane() {
     const laneId = this.props.lane.id;
-
-    console.log('delete lane %s', laneId);
 
     LaneActions.delete(laneId);
   }

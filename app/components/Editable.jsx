@@ -28,7 +28,6 @@ class Editable extends Component {
   }
 
   renderEditView() {
-    console.log('::renderEditView::value:', this.state.valueEdit);
     return (
       <input
         type="text"
