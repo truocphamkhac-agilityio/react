@@ -1,3 +1,5 @@
+import './main.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -11,5 +13,5 @@ persist(alt, storage, 'app');
 
 ReactDOM.render(
   <App />,
-  document.getElementById('main')
+  document.getElementById('app')
 );

@@ -4,5 +4,6 @@
     "start": {
         "presets": ["react-hmre"]
     }
-  }
+  },
+  "plugins": ["transform-inline-environment-variables"]
 }

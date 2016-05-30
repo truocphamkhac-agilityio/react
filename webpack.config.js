@@ -7,7 +7,7 @@ const TARGET = process.env.npm_lifecycle_event;
 const PATH = {
   public: path.join(__dirname, 'public'),
   entry: [
-    path.join(__dirname, 'app', 'index.js'),
+    path.join(__dirname, 'app', 'index.jsx'),
     'webpack-dev-server/client?http://0.0.0.0:9000'
   ]
 };
@@ -26,7 +26,7 @@ const common = {
   },
   module: {
     loaders: [{
-      test: /\.scss$/,
+      test: /\.css$/,
       loaders: ['style', 'css', 'sass']
     }, {
       test: /(\.jsx|\.js)$/,
