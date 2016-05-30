@@ -83,7 +83,7 @@ if (TARGET === 'start' || !TARGET) {
   });
 }
 
-if (TARGET === 'build') {
+if (TARGET === 'build' || TARGET === 'stats') {
   module.exports = merge(common, {
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
