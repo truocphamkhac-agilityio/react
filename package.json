@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --host 0.0.0.0 --port 9000 --progress --colors --watch-poll --inline",
     "test": "karma start --single-run --reporters spec,coverage",
-    "build": "webpack --profile --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "buildProd": "webpack -p --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
@@ -83,6 +84,9 @@
     "phantomjs-polyfill": "^0.0.2",
     "phantomjs-prebuilt": "^2.1.7",
     "react-addons-test-utils": "^15.0.2",
+    "react-addons-update": "^15.1.0",
+    "react-dnd": "^2.1.4",
+    "react-dnd-html5-backend": "^2.1.2",
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
