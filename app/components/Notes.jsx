@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Editable from './Editable.jsx';
+import Note from './Note.jsx';
 
 class Notes extends Component {
   constructor(props) {
@@ -18,7 +19,11 @@ class Notes extends Component {
       <ul className="notes">
         {
           notes.map(note =>
-            <li className="note" key={note.id}>
+            <Note
+              className="note"
+              id={note.id}
+              key={note.id}
+            >
               <Editable
                 editing={note.editing}
                 value={note.task}
@@ -26,7 +31,7 @@ class Notes extends Component {
                 onEdit={this.state.onEdit.bind(null, note.id)}
                 onDelete={this.state.onDelete.bind(null, note.id)}
               />
-            </li>
+            </Note>
           )
         }
       </ul>

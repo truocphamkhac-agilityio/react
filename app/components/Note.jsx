@@ -1,80 +1,63 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {DragSource, DropTarget} from 'react-dnd';
+import ItemTypes from '../constants/itemTypes';
 
 const ENTER_KEY = 13;
 const ESCAPE_KEY = 27;
 
+const noteSource = {
+  beginDrag(props) {
+    console.log('begin dragging note', props);
+    return {};
+  }
+};
+
+const noteTarget = {
+  hover(targetProps, monitor) {
+    const sourceProps = monitor.getItem();
+    console.log('dragging note', sourceProps, targetProps);
+  }
+};
+
+/**
+ * define the collect function
+ */
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  };
+};
+
 class Note extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      editing: false
-    };
-
-    this.renderEdit = this.renderEdit.bind(this);
-    this.renderNote = this.renderNote.bind(this);
-    this.doEdit = this.doEdit.bind(this);
-    this.finishEdit = this.finishEdit.bind(this);
-    this.checkKeySubmit = this.checkKeySubmit.bind(this);
-  }
-
-  doEdit() {
-    // change to edit mode
-    this.setState({
-      editing: true
-    });
-  }
-
-  finishEdit(e) {
-    const value = e.target.value;
-
-    if (this.props.onEdit) {
-      this.props.onEdit(value);
-      this.setState({
-        editing: false
-      });
-    }
-  }
-
-  checkKeySubmit(e) {
-    if (e.which === ENTER_KEY) {
-      this.finishEdit(e);
-    } else if (e.which === ESCAPE_KEY) {
-      this.setState({
-        editing: false
-      });
-    }
-  }
-
-  renderEdit() {
-    return (
-      <input type="text"
-        ref={
-          (e) => e ? e.selectionStart = this.props.task.length : null
-        }
-        autoFocus={true}
-        defaultValue={this.props.task}
-        onBlur={this.finishEdit}
-        onKeyDown={this.checkKeySubmit} />
-    );
-  }
-
-  renderNote() {
-    return (
-      <div onClick={this.doEdit}>{this.props.task} <span className="btn btn-xs delete-note" onClick={this.props.onDelete}>x</span></div>
-    );
-  }
-
   render() {
-    if (this.state.editing) {
-      return this.renderEdit();
-    }
+    console.log('::Note::props', this.props);
+    const connectDragSource = this.props.connectDragSource;
+    const isDragging = this.props.isDragging;
 
-    return this.renderNote();
+    return connectDragSource(
+      <li
+        className={this.props.className}
+        id={this.props.id}
+        key={this.props.id}
+        style={{
+          opacity: isDragging ? 0.5 : 1
+        }}
+      >
+        {this.props.children}
+      </li>
+    );
   }
 }
+
+Note.propTypes = {
+  connectDragSource: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool.isRequired
+};
 
 /**
  * Expose
  */
 export default Note;
+
+module.exports = DragSource(ItemTypes.NOTE, noteSource, collect)(Note);

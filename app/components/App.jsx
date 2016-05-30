@@ -5,6 +5,9 @@ import Lanes from './Lanes.jsx';
 import LaneActions from '../actions/LaneActions';
 import LaneStore from '../stores/LaneStore';
 
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -55,3 +58,4 @@ class App extends Component {
  * Expose
  */
 export default App;
+module.exports = DragDropContext(HTML5Backend)(App);
