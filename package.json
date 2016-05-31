@@ -8,8 +8,8 @@
     "buildProd": "webpack -p --config webpack.base.config.js",
     "stats": "webpack --config webpack.base.config.js --profile --json > stats.json",
     "start": "webpack-dev-server --config webpack.base.config.js --host 0.0.0.0 --port 9000 --progress --colors --inline",
-    "test": "karma start",
-    "tdd": "karma start --auto-watch --no-single-run"
+    "test": "karma start --single-run --reporters spec,coverage",
+    "tdd": "karma start --auto-watch --no-single-run --reporters spec,coverage"
   },
   "repository": {
     "type": "git",
