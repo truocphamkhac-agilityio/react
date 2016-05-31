@@ -35,30 +35,13 @@ const config = {
     extensions: ['', '.js', '.jsx']
   },
   module: {
-    loaders: [{
-      test: /\.css$/,
-      // loaders: ['style', 'css']
-      loader: ExtractTextPlugin.extract('style', 'css')
-    }, {
-      test: /(\.jsx|\.js)$/,
-      exclude: /node_modules/,
-      loaders: ['babel']
-    }, {
-      test: /.*\.(gif|png|jpe?g|svg)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
-      ]
-    }, {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/octet-stream'
-    }, {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file'
-    }, {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=image/svg+xml'
-    }]
+    loaders: [
+      {
+        test: /\.css$/,
+        // loaders: ['style', 'css']
+        loader: ExtractTextPlugin.extract('style', 'css')
+      }
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -90,6 +73,9 @@ const config = {
   ]
 };
 
+/**
+ * Expose.
+ */
 module.exports = config;
 
 

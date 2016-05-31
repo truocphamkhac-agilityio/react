@@ -4,11 +4,11 @@
   "description": "React, Hello world!",
   "main": "index.js",
   "scripts": {
-    "stats": "webpack --profile --json > stats.json",
-    "start": "webpack-dev-server --config webpack.config.js --host 0.0.0.0 --port 9000 --progress --colors --watch-poll --inline",
-    "test": "karma start --single-run --reporters spec,coverage",
-    "build": "webpack --config webpack.config.js",
-    "buildProd": "webpack -p --config webpack.production.config.js"
+    "build": "webpack --config webpack.base.config.js",
+    "buildProd": "webpack -p --config webpack.base.config.js",
+    "stats": "webpack --config webpack.base.config.js --profile --json > stats.json",
+    "start": "webpack-dev-server --config webpack.base.config.js --host 0.0.0.0 --port 9000 --progress --colors --inline",
+    "test": "karma start --single-run --reporters spec,coverage"
   },
   "repository": {
     "type": "git",
