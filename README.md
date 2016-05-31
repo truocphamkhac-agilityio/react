@@ -1,4 +1,4 @@
-#JavaScript training
+# JavaScript training
 
 The repository for training JavaScript.
 
@@ -8,7 +8,7 @@ The repository for training JavaScript.
 - [Build structure of react project based on Flux](https://facebook.github.io/react/docs/flux-overview.html)
 
 ## Target
-All codes already in the repository: [g-truocpham](git@gitlab.asoft-python.com:g-truocpham/javascript-training.git)
+All codes already in the Gitlab repository: [g-truocpham](git@gitlab.asoft-python.com:g-truocpham/javascript-training.git)
 
 ### React
 + Do simple Todo application with React framework.

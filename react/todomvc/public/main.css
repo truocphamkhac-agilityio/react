@@ -1,0 +1,16 @@
+.vert-offset-top-0{
+    margin-top: 0em;
+}
+.vert-offset-top-2{
+    margin-top: 2em;
+}
+
+.new-task-group {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+.todoBox .list-group .img-circle:nth-child(2) {
+    margin-left: 2px;
+    margin-right: 2px;
+}
