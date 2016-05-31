@@ -1,58 +1,68 @@
-const webpackConfig = require('./webpack.test.config.js')
+const testConfig = require('./webpack.test.config.js');
 
-module.exports = function (config) {
-  const browsers = ['PhantomJS','Chrome']
-  var configuration = {
-    frameworks: ['jasmine'],
+module.exports = function karmaConfig (config) {
+  // define configuration for karma
+  const configuration = {
+    frameworks: [
+      'jasmine'
+    ],
+
+    files: [
+      // Needed because React.js requires bind and phantomjs does not support it
+      'node_modules/phantomjs-polyfill/bind-polyfill.js',
+      // Grab all files in the __tests__ directory that contain _test
+      '__tests__/*_test.*'
+    ],
+
+    preprocessors: {
+      // Convert files with webpack and load sourcemaps
+      '__tests__/*_test.*': ['webpack', 'sourcemap']
+    },
+
+    // Using test webpack config
+    webpack: testConfig,
+
+    webpackServer: {
+      noInfo: true // please don't spam the console when running in karma!
+    },
+
     plugins: [
+      'karma-webpack',
       'karma-jasmine',
       'karma-sourcemap-loader',
-      'karma-webpack',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
       'karma-firefox-launcher',
       'karma-coverage',
       'karma-spec-reporter'
     ],
-    basePath: '',
-    browsers: [browsers[0]],
-    customLaunchers: {
-      TRAVIS_CHROME: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
+
+    babelPreprocessor: {
+      options: {
+        presets: ['airbnb']
       }
     },
-    files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
-      'node_modules/phantomjs-polyfill/bind-polyfill.js', {
-        pattern: './test/*.spec.js',
-        watched: false,
-        included: true,
-        served: true
-      }
+
+    reporters: [
+      'progress',
+      'spec',
+      'coverage'
     ],
-    preprocessors: {
-      './test/**/*.spec.js': ['webpack', 'sourcemap']
-    },
 
-    webpack: webpackConfig,
+    browsers: [
+      'Chrome', // run tests using Chrome
+      'PhantomJS' // run tests using PhantomJS
+    ],
 
-    webpackServer: {
-      noInfo: true
-    },
-    reporters: ['spec'],
-
+    // Configure code coverage reporter
     coverageReporter: {
-      dir: 'test/coverage/',
-      reporters: [{
-        type: 'html',
-        subdir: 'html'
-      }, {
-        type: 'lcov',
-        subdir: 'lcov'
-      }, {
-        type: 'text-summary'
-      }]
+      dir: '__tests__/coverage/',
+      type: 'html'
+    },
+
+    // Hide webpack build information from output
+    webpackMiddleware: {
+      noInfo: true
     },
 
     port: 9876,
@@ -60,11 +70,8 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     singleRun: false
-  }
+  };
 
-  if (process.env.TRAVIS) {
-    configuration.browsers = [browsers[0]]
-  }
-
-  config.set(configuration)
+  // Set configuration
+  config.set(configuration);
 }

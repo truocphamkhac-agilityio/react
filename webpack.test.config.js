@@ -1,55 +1,63 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
-var webpackConfig = {
-  context: path.join(__dirname, './src'),
-  devtool: 'eval',
+const PATHS = {
+  app: path.join(__dirname, 'app'),
+  public: path.join(__dirname, 'public'),
+  style: path.join(__dirname, 'app/main.css'),
+  test: path.join(__dirname, '__tests__')
+};
+
+const config = {
+  context: path.join(__dirname, './app'),
   entry: {
-    titlereact: ['./index.js']
+    kanbanreact: ['./index.jsx']
   },
-  node: {
-    fs: 'empty'
-  },
-  plugins: [
-    new webpack.NoErrorsPlugin()
-  ],
-  module: {
-    loaders: [{
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
-    }, {
-      test: /\.(json)$/,
-      loaders: [
-        'json-loader?cacheDirectory'
-      ]
-    }, {
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loaders: [
-        'babel-loader?cacheDirectory'
-      ]
-    }, ]
-  },
+  devtool: 'inline-source-map',
   resolve: {
     alias: {
-      titlereact: path.resolve('./src/index.js')
+      'kanbanreact': path.resolve('./app/index.jsx')
     },
     extensions: ['', '.js', '.jsx', '.json']
   },
-}
+  module: {
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['isparta-instrumenter'],
+        include: PATHS.app
+      }
+    ],
+    loaders: [
+      {
+        test: /\.(css|scss)$/,
+        loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /\.(json)$/,
+        loaders: [
+          'json-loader?cacheDirectory'
+        ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loaders: [
+          'babel?cacheDirectory'
+        ],
+        include: PATHS.test
+      }
+    ]
+  },
+  externals: {
+    'cheerio': 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  }
+};
 
-webpackConfig.module.preLoaders = webpackConfig.module.preLoaders || []
-webpackConfig.module.preLoaders.push({
-  test: /\.jsx?$/,
-  exclude: /(test|node_modules)\//,
-  loader: 'isparta'
-})
-webpackConfig.webpackServer = {
-  noInfo: true
-}
-webpackConfig.externals = {}
-webpackConfig.externals['react/lib/ExecutionEnvironment'] = true
-webpackConfig.externals['react/lib/ReactContext'] = true
-webpackConfig.externals['react/addons'] = true
-
-module.exports = webpackConfig
+/**
+ * Expose test config.
+ */
+module.exports = config;
