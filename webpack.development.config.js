@@ -34,11 +34,8 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loaders: ['style', 'css']
-      }, {
-        test: /\.scss$/,
-        loaders: ['style', 'sass']
+        test: /\.(css|scss)$/,
+        loaders: ['style', 'css', 'sass']
       }
     ]
   },
