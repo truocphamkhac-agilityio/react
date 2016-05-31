@@ -1,18 +1,54 @@
-#hello react
+#JavaScript training
 
-The project development based on react and react-dom version 15.0.2.
+The repository for training JavaScript.
 
 ## General
-- Familiar with react framework.
-- Build structure of react project.
+- [Familiar with React framework](https://facebook.github.io/react/)
+- [Compiler react web application by Webpack](https://webpack.github.io/)
+- [Build structure of react project based on Flux](https://facebook.github.io/react/docs/flux-overview.html)
 
-## Requirements
-- react version 15.0.2
-- react-dom version 15.0.2
+## Target
+All codes already in the repository: [g-truocpham](git@gitlab.asoft-python.com:g-truocpham/javascript-training.git)
 
-## Usage
+### React
++ Do simple Todo application with React framework.
++ Requirements: react and react-dom v15.1.0
++ Branch: `feature/todomvc`
++ How to run app:
+```
+npm start
+```
 
-## How to deploy
+### Webpack and React
++ Do simple web application with React framework and using Webpack to compiler.
++ Requirements: react and react-dom v15.1.0
++ Branch: `feature/todomvc`
 
-## Trobleshooting
-TODO
+### Flux, Webpack, and React
++ Do simple Kanban application with React framework, Webpack compiler, and Flux structure.
++ Requirements: react and react-dom v15.1.0
++ Branch: `feature/survivejs-webpack-react`
++ How to start app:
+```
+npm start
+```
++ How to build:
+```
+npm build
+npm buildProd
+```
++ How to stats:
+```
+npm run stats
+```
++ How to test:
+```
+npm test
+npm run tdd
+```
+
+## About me
+
+>Name:  [Truoc Pham](truoc.phamkhac@asnet.com.vn)
+>
+>Phone: +84 906 314 267
