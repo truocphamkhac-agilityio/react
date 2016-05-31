@@ -1,7 +1,7 @@
 {
-  "name": "hello",
+  "name": "kanban",
   "version": "0.0.1",
-  "description": "React, Hello world!",
+  "description": "Build Kanban application with webpack compiler, react library, and flux structure",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.base.config.js",
