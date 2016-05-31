@@ -1,18 +1,8 @@
-#hello react
+#JavaScript training
 
-The project development based on react and react-dom version 15.0.2.
+The repository for training JavaScript.
 
 ## General
-- Familiar with react framework.
-- Build structure of react project.
-
-## Requirements
-- react version 15.0.2
-- react-dom version 15.0.2
-
-## Usage
-
-## How to deploy
-
-## Trobleshooting
-TODO
+- [Familiar with react framework](https://facebook.github.io/react/)
+- [Compiler react web application by Webpack](https://webpack.github.io/)
+- [Build structure of react project based on Flux](https://facebook.github.io/react/docs/flux-overview.html)
